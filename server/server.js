@@ -7,17 +7,16 @@ const app = express();
 app.use(cors()); // Express Middleware
 app.use(express.json()); // Express Middleware to parse JSON bodies
 
-// 1. Connect to MongoDB
+
 mongoose.connect('mongodb://localhost:27017/servicefinder')
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-// 2. Import Models
+
 const Provider = require('./models/provider');
 const User = require('./models/user');
 
-// 3. Define Routes (This is your REST API)
-// GET all providers (can filter by category)
+
 app.get('/api/providers', async (req, res) => {
 
   try {
@@ -26,7 +25,7 @@ app.get('/api/providers', async (req, res) => {
       filter.serviceCategory = req.query.category;
     }
     const providers = await Provider.find(filter);
-    res.json(providers); // Sends JSON (vs. XML)
+    res.json(providers); 
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -69,20 +68,18 @@ app.post('/api/login', async (req, res) => {
     const user = await User.findOne({ email });
     
     if (!user) {
-      // We send a 400 (Bad Request) status
-      // Note: In a real app, you might send a vague "Invalid credentials"
-      // message for security, but this is clearer for a project.
+
       return res.status(400).json({ message: 'User with this email does not exist' });
     }
 
     // 2. Check if password matches
-    // This is the simple, NON-HASHED check.
+  
     if (password !== user.password) {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
     // 3. If email and password are correct, send success
-    // We send back some user data (but NOT the password)
+
     res.status(200).json({
       message: 'Login successful!',
       user: {
@@ -97,12 +94,11 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// This is the corrected route.
-// It now matches your React form.
+
 
 app.post('/api/provider/register', async (req, res) => {
   try {
-    // 1. Destructure ALL fields from the request body
+    
     const { 
       name, 
       email, // This is the login email
@@ -132,7 +128,6 @@ app.post('/api/provider/register', async (req, res) => {
       profile: {
         description: profile.description, // Save description from profile object
         phone: profile.phone,             // Save phone from profile object
-        email: email                      // Re-use login email as public email
       }
     });
 
@@ -187,11 +182,6 @@ app.post('/api/provider/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 1. Check if provider exists
-    //
-    //    THE FIX IS HERE: Search the top-level 'email' field,
-    //    not 'profile.email'.
-    //
     const provider = await Provider.findOne({ email: email });
     
     if (!provider) {
@@ -203,13 +193,13 @@ app.post('/api/provider/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // 3. If email and password are correct, send success
+    // If email and password are correct, send success
     res.status(200).json({
       message: 'Provider login successful!',
       provider: {
         id: provider._id,
         name: provider.name,
-        email: provider.email // Send back the top-level email
+        email: provider.email 
       }
     });
 

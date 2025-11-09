@@ -9,11 +9,12 @@ const reviewSchema = new mongoose.Schema({
 
 const providerSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   serviceCategory: { type: String, required: true, enum: ['Plumber', 'Electrician', 'Carpenter', 'Painter', 'General Service'] },
   profile: {
     description: String,
     phone: String,
-    email: { type: String, required: true, unique: true }, 
+     
   },
   location: String, 
   reviews: [reviewSchema], 
