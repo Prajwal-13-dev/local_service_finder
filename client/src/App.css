@@ -1,0 +1,641 @@
+/* --- General & Button Styles --- */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+.btn-outline {
+  background-color: #fff;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+.btn-outline:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/*
+  App Layout & Background
+
+*/
+body, html, #root, .app-container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+.app-container {
+  height: 100vh;
+
+  background-image: url('\house-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  
+  
+  display: flex;
+  flex-direction: column;
+}
+
+/* This is the dark overlay, identical to the homepage one,
+  but it covers the whole app.
+*/
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.navbar-transparent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  
+  
+  position: relative; 
+  z-index: 100;
+  
+  background-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.navbar-left, .navbar-center, .navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1; /* Each section takes 1/3 */
+}
+.navbar-center {
+  justify-content: center;
+}
+.navbar-right {
+  justify-content: flex-end;
+}
+
+.navbar-brand-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.nav-item-main {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-item-main:hover {
+  color: #007bff;
+}
+
+.nav-item-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-item-location:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+.nav-item-location span {
+  font-size: 1rem;
+}
+
+.nav-item-auth {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-item-auth:hover {
+  color: #007bff;
+}
+
+.nav-item-auth-join {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-item-auth-join:hover {
+  background-color: #fff;
+  color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+
+.nav-item-hello {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f0f0f0;
+}
+.nav-item-logout {
+  background: none;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.nav-item-logout:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+
+/*Page Content Wrapper*/
+
+
+main {
+  /* This flex-grow makes the <main> element fill
+     all remaining space under the navbar */
+  flex-grow: 1; 
+  
+  /* This is crucial for non-homepage pages */
+  position: relative;
+  z-index: 50;
+  
+  /* Allows scrolling on long pages */
+  overflow-y: auto;
+  
+  /* Fades in the page content */
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*
+  Interactive Homepage Styles
+
+*/
+.homepage-container {
+  width: 100%;
+  height: 100%; 
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+
+.center-house-icon {
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.7);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.center-house-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(0, 123, 255, 1);
+}
+.center-house-icon img {
+  width: 60px;
+  height: 60px;
+}
+
+
+.services-circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 3px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  z-index: 5;
+  transition: all 0.5s ease-out;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  opacity: 1;
+  transform: scale(1);
+}
+
+/*  INDIVIDUAL SERVICE ICONS */
+.service-icon {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  opacity: 1; 
+
+  --angle: calc(var(--index) * 60deg);
+  transform: rotate(var(--angle)) translateY(-250px) rotate(calc(-1 * var(--angle)));
+}
+.service-icon img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+.service-icon:hover {
+  background-color: #fff;
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.services-circle.open .service-icon:hover {
+   --angle: calc(var(--index) * 60deg);
+   transform: rotate(var(--angle)) translateY(-250px) rotate(calc(-1 * var(--angle))) scale(1.1);
+}
+
+
+/*
+  New Stylish Page Addition*/
+
+/* --- New Auth Card Styles (Using Emojis) --- */
+.auth-card {
+  background-color: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 2rem auto;
+}
+.auth-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.auth-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.auth-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 600px) {
+  .auth-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auth-input-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+/* This is the emoji span */
+.auth-icon-emoji {
+  position: absolute;
+  left: 15px;
+  top: 13px;
+  font-size: 1rem;
+  color: #999;
+}
+.auth-input-group input,
+.auth-input-group select,
+.auth-input-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.75rem; /* Padding for icon */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.auth-input-group textarea {
+  padding: 0.8rem 1rem; /* No icon for textarea */
+}
+.auth-input-group input:focus,
+.auth-input-group select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+}
+.auth-input-group select {
+  padding-left: 2.75rem;
+  appearance: none;
+}
+
+.auth-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+}
+.auth-checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+}
+.auth-checkbox-group input[type="checkbox"] {
+  width: 1.15rem;
+  height: 1.15rem;
+  cursor: pointer;
+}
+
+.auth-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+.auth-switch-link {
+  text-align: center;
+  color: #555;
+  margin-top: 1rem;
+}
+.auth-switch-link a {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.auth-switch-link a:hover {
+  text-decoration: underline;
+}
+.auth-error {
+  color: #dc3545;
+  background-color: #fde8e8;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* --- New Provider Profile Page Styles --- */
+.profile-page-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+}
+
+.profile-header-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  border: 1px solid #f0f0f0;
+}
+.profile-header-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #f0f0f0;
+}
+.profile-header-info {
+  flex: 1;
+}
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.profile-service-category {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+.profile-header-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.profile-header-rating span {
+  font-weight: 700;
+  color: #333;
+}
+.profile-emergency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fde8e8;
+  color: #dc3545;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+.star-filled {
+  color: #f5b900;
+  
+}
+.star-empty {
+  color: #d0d0d0;
+}
+
+/* --- Profile Content Grid --- */
+.profile-content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 900px) {
+  .profile-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-left-column, .profile-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.profile-right-column {
+  position: sticky;
+  top: 90px; 
+  align-self: start;
+}
+
+.profile-section {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 2rem;
+  border: 1px solid #f0f0f0;
+}
+.profile-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.profile-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+}
+.profile-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.profile-contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* --- Review List Styles --- */
+.profile-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.review-card {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 1.5rem;
+}
+.review-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.review-avatar {
+  background-color: #f0f0f0;
+  color: #777;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+.review-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.review-author-name {
+  font-weight: 600;
+  color: #333;
+}
+.review-comment {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- Profile Review Form --- */
+.profile-review-form {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid #f0f0f0;
+}
+.profile-review-form .auth-input-group textarea {
+  padding: 0.8rem 1rem 0.8rem 2.75rem; /* Add icon padding back */
+}
